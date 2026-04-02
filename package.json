@@ -1,0 +1,19 @@
+{
+  "name": "vue2-plugins",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.2.0",
+  "scripts": {
+    "dev": "pnpm --filter @zhenzichao/vue2-demo dev",
+    "build": "pnpm -r --filter \"./packages/*\" --filter \"!./packages/demo\" run build",
+    "build:svg": "pnpm --filter @zhenzichao/vue2-svg-icon run build",
+    "publish:svg": "pnpm --filter @zhenzichao/vue2-svg-icon publish --access public",
+    "publish:all": "pnpm -r --filter \"./packages/*\" --filter \"!./packages/demo\" publish --access public"
+  },
+  "devDependencies": {
+    "vite": "^4.5.14",
+    "vue-template-compiler": "2.7.14",
+    "vite-plugin-vue2": "^2.0.3",
+    "vite-plugin-css-injected-by-js": "^4.0.1"
+  }
+}

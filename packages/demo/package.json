@@ -1,0 +1,17 @@
+{
+  "name": "@zhenzichao/vue2-demo",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@zhenzichao/vue2-svg-icon": "workspace:*",
+    "vue": "2.7.14"
+  },
+  "devDependencies": {
+    "vite-plugin-svg-icons": "^2.0.1"
+  }
+}
