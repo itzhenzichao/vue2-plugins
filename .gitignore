@@ -39,3 +39,6 @@ jspm_packages/
 
 # Coverage
 coverage/
+
+# AI Assistant (Trae)
+.clinerules/
