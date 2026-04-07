@@ -40,7 +40,11 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
-
+        
+    # 🔧 核心修复：在不修改 package.json 的前提下，向根 workspace 注入缺失依赖
+      - name: Patch missing fast-glob
+        run: pnpm add -D fast-glob -w
+        
       - name: Build Vue2 project
         run: pnpm build:demo  # 你根目录 package.json 里的 build 脚本，会打包出 dist
 
