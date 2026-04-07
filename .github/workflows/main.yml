@@ -26,17 +26,17 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
+          
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8  # 匹配你本地的 pnpm 版本
+          
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20  # Vue2 兼容的稳定版本
           cache: 'pnpm'
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 9  # 匹配你本地的 pnpm 版本
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile  # 严格按 lockfile 安装，避免版本不一致
