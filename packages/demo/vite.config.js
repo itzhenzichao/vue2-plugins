@@ -4,6 +4,7 @@ import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
 import { resolve } from "node:path";
 
 export default defineConfig({
+  base: '/vue2-plugins/',
   plugins: [
     createVuePlugin(),
     createSvgIconsPlugin({
