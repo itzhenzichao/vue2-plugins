@@ -1,6 +1,6 @@
 {
   "name": "@zhenzichao/vue2-svg-icon",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Vue2 svg icon plugin (folder svg, size & color)",
   "main": "dist/vue2-svg-icon.js",
   "module": "dist/vue2-svg-icon.mjs",
