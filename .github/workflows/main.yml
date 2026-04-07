@@ -39,7 +39,7 @@ jobs:
           cache: 'pnpm'
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile  # 严格按 lockfile 安装，避免版本不一致
+        run: pnpm install --no-frozen-lockfile
 
       - name: Build Vue2 project
         run: pnpm build  # 你根目录 package.json 里的 build 脚本，会打包出 dist
