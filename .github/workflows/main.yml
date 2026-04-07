@@ -1,0 +1,58 @@
+name: Deploy Vue2 Site to GitHub Pages
+
+on:
+  # 推送到 main 分支时自动触发部署
+  push:
+    branches: [main]
+  # 允许手动在 GitHub 仓库 Actions 里触发
+  workflow_dispatch:
+
+# 设置权限，允许部署到 Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 确保同一时间只有一个部署任务
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20  # Vue2 兼容的稳定版本
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9  # 匹配你本地的 pnpm 版本
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile  # 严格按 lockfile 安装，避免版本不一致
+
+      - name: Build Vue2 project
+        run: pnpm build  # 你根目录 package.json 里的 build 脚本，会打包出 dist
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # 上传打包后的 dist 文件夹（你的构建输出必须是 dist）
+          path: ./packages/demo/dist  # 重点：你的 demo 打包输出路径！
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
