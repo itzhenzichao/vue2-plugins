@@ -42,7 +42,7 @@ jobs:
         run: pnpm install --no-frozen-lockfile
 
       - name: Build Vue2 project
-        run: pnpm build  # 你根目录 package.json 里的 build 脚本，会打包出 dist
+        run: pnpm build:demo  # 你根目录 package.json 里的 build 脚本，会打包出 dist
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
