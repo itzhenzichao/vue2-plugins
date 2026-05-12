@@ -24,7 +24,8 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      "@zhenzichao/vue2-svg-icon": resolve(__dirname, "../svg-icon/src/index.js")
+      "@zhenzichao/vue2-svg-icon": resolve(__dirname, "../svg-icon/src/index.js"),
+      "@zhenzichao/vue2-watermark-plugin": resolve(__dirname, "../watermark/src/index.js")
     }
   },
   server: {

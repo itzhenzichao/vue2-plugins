@@ -1,0 +1,40 @@
+{
+  "name": "@zhenzichao/vue2-watermark-plugin",
+  "version": "1.0.0",
+  "description": "A professional watermark plugin for frontend applications - supports global and local watermarking with anti-tampering protection",
+  "main": "dist/watermark.js",
+  "module": "dist/watermark.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/watermark.mjs",
+      "require": "./dist/watermark.js"
+    },
+    "./dist/*": "./dist/*"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite build --watch"
+  },
+  "keywords": [
+    "watermark",
+    "security",
+    "frontend",
+    "copyright",
+    "protection",
+    "vue",
+    "react"
+  ],
+  "author": "zhenzichao",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:itzhenzichao/vue2-plugins.git"
+  },
+  "devDependencies": {
+    "vite": "^4.5.14"
+  }
+}

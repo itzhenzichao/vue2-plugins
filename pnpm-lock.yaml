@@ -2,54 +2,7 @@ lockfileVersion: '6.0'
 
 importers:
 
-  .: {}
-
-  packages/demo:
-    dependencies:
-      '@zhenzichao/vue2-dialog':
-        specifier: workspace:*
-        version: link:../dialog
-      '@zhenzichao/vue2-svg-icon':
-        specifier: workspace:*
-        version: link:../svg-icon
-      vue:
-        specifier: 2.7.14
-        version: 2.7.14
-    devDependencies:
-      vite:
-        specifier: ^4.5.14
-        version: 4.5.14
-      vite-plugin-svg-icons:
-        specifier: ^2.0.1
-        version: 2.0.1(vite@4.5.14)
-      vite-plugin-vue2:
-        specifier: ^2.0.3
-        version: 2.0.3(vite@4.5.14)(vue-template-compiler@2.7.14)(vue@2.7.14)
-      vue-template-compiler:
-        specifier: 2.7.14
-        version: 2.7.14
-
-  packages/dialog:
-    dependencies:
-      vue:
-        specifier: ^2.7.14
-        version: 2.7.14
-    devDependencies:
-      vite:
-        specifier: ^4.5.14
-        version: 4.5.14
-      vite-plugin-vue2:
-        specifier: ^2.0.3
-        version: 2.0.3(vite@4.5.14)(vue-template-compiler@2.7.14)(vue@2.7.14)
-      vue-template-compiler:
-        specifier: 2.7.14
-        version: 2.7.14
-
-  packages/svg-icon:
-    dependencies:
-      vue:
-        specifier: ^2.7.14
-        version: 2.7.14
+  .:
     devDependencies:
       vite:
         specifier: ^4.5.14
@@ -59,10 +12,38 @@ importers:
         version: 4.0.1(vite@4.5.14)
       vite-plugin-vue2:
         specifier: ^2.0.3
-        version: 2.0.3(vite@4.5.14)(vue-template-compiler@2.7.14)(vue@2.7.14)
+        version: 2.0.3(vite@4.5.14)(vue-template-compiler@2.7.14)
       vue-template-compiler:
         specifier: 2.7.14
         version: 2.7.14
+
+  packages/demo:
+    dependencies:
+      '@zhenzichao/vue2-svg-icon':
+        specifier: workspace:*
+        version: link:../svg-icon
+      '@zhenzichao/watermark':
+        specifier: workspace:*
+        version: link:../watermark
+      vue:
+        specifier: 2.7.14
+        version: 2.7.14
+    devDependencies:
+      vite-plugin-svg-icons:
+        specifier: ^2.0.1
+        version: 2.0.1(vite@4.5.14)
+
+  packages/svg-icon:
+    dependencies:
+      vue:
+        specifier: ^2.7.14
+        version: 2.7.14
+
+  packages/watermark:
+    devDependencies:
+      vite:
+        specifier: ^4.5.14
+        version: 4.5.14
 
 packages:
 
@@ -762,7 +743,7 @@ packages:
       - supports-color
     dev: true
 
-  /@vue/babel-preset-jsx@1.4.0(@babel/core@7.29.0)(vue@2.7.14):
+  /@vue/babel-preset-jsx@1.4.0(@babel/core@7.29.0):
     resolution: {integrity: sha512-QmfRpssBOPZWL5xw7fOuHNifCQcNQC1PrOo/4fu6xlhlKJJKSA3HqX92Nvgyx8fqHZTUGMPHmFA+IDqwXlqkSA==}
     peerDependencies:
       '@babel/core': ^7.0.0-0
@@ -780,7 +761,6 @@ packages:
       '@vue/babel-sugar-inject-h': 1.4.0(@babel/core@7.29.0)
       '@vue/babel-sugar-v-model': 1.4.0(@babel/core@7.29.0)
       '@vue/babel-sugar-v-on': 1.4.0(@babel/core@7.29.0)
-      vue: 2.7.14
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -856,6 +836,7 @@ packages:
       '@babel/parser': 7.29.2
       postcss: 8.5.8
       source-map: 0.6.1
+    dev: false
 
   /@vue/component-compiler-utils@3.3.0:
     resolution: {integrity: sha512-97sfH2mYNU+2PzGrmK2haqffDpVASuib9/w2/noxiFi31Z54hW+q3izKQXXQZSNhtiUpAI36uSuYepeBe4wpHQ==}
@@ -1547,6 +1528,7 @@ packages:
 
   /csstype@3.2.3:
     resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
+    dev: false
 
   /data-view-buffer@1.0.2:
     resolution: {integrity: sha512-EmKO5V3OLXh1rtK2wgXRansaK1/mtVdTUEiEI0W8RkvgT05kfxaH29PliLnpLP73yYO6142Q72QNa8Wx/A5CqQ==}
@@ -3418,7 +3400,7 @@ packages:
       - supports-color
     dev: true
 
-  /vite-plugin-vue2@2.0.3(vite@4.5.14)(vue-template-compiler@2.7.14)(vue@2.7.14):
+  /vite-plugin-vue2@2.0.3(vite@4.5.14)(vue-template-compiler@2.7.14):
     resolution: {integrity: sha512-t3Tu93GWsMHbpeIv66MTO5e/rRAo8/+/eWoUtFYuAdKDMyEnn1dqsrXh+CfG+SJAlxJvcTP8U0eXkzhLjKNyMg==}
     peerDependencies:
       vite: ^2.0.0 || ^3.0.0 || ^4.0.0
@@ -3440,7 +3422,7 @@ packages:
       '@babel/plugin-transform-typescript': 7.28.6(@babel/core@7.29.0)
       '@rollup/pluginutils': 4.2.1
       '@vue/babel-helper-vue-jsx-merge-props': 1.4.0
-      '@vue/babel-preset-jsx': 1.4.0(@babel/core@7.29.0)(vue@2.7.14)
+      '@vue/babel-preset-jsx': 1.4.0(@babel/core@7.29.0)
       '@vue/component-compiler-utils': 3.3.0
       consolidate: 0.16.0
       debug: 4.4.3
@@ -3588,6 +3570,7 @@ packages:
     dependencies:
       '@vue/compiler-sfc': 2.7.14
       csstype: 3.2.3
+    dev: false
 
   /which-boxed-primitive@1.1.1:
     resolution: {integrity: sha512-TbX3mj8n0odCBFVlY8AxkqcHASw3L60jIuF8jFP78az3C2YhmGvqbHBpAjTRH2/xqYunrJ9g1jSyjCjpoWzIAA==}

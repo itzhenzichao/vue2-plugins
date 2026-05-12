@@ -29,11 +29,13 @@
 
 <script>
 import SvgIconPage from "./pages/SvgIconPage.vue";
+import WatermarkPage from "./pages/WatermarkPage.vue";
 
 export default {
   name: "DemoApp",
   components: {
-    SvgIconPage
+    SvgIconPage,
+    WatermarkPage
   },
   data() {
     return {
@@ -43,13 +45,18 @@ export default {
           key: "svg-icon",
           title: "SvgIcon 图标",
           sub: "@zhenzichao/vue2-svg-icon"
+        },
+        {
+          key: "watermark",
+          title: "Watermark 水印",
+          sub: "@zhenzichao/watermark"
         }
       ]
     };
   },
   computed: {
     activePage() {
-      // 返回组件对象给 <component :is="..."> 渲染
+      if (this.activeKey === "watermark") return WatermarkPage;
       if (this.activeKey === "svg-icon") return SvgIconPage;
       return null;
     }
