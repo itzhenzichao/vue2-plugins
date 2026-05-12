@@ -9,6 +9,7 @@
     "build:svg": "pnpm --filter @zhenzichao/vue2-svg-icon run build",
     "build:demo": "pnpm --filter @zhenzichao/vue2-demo run build",
     "publish:svg": "pnpm --filter @zhenzichao/vue2-svg-icon publish --access public",
+    "publish:watermark": "pnpm --filter @zhenzichao/vue2-watermark-plugin publish --access public",
     "publish:all": "pnpm -r --filter \"./packages/*\" --filter \"!./packages/demo\" publish --access public"
   },
   "devDependencies": {
