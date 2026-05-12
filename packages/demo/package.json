@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@zhenzichao/vue2-svg-icon": "workspace:*",
-    "@zhenzichao/watermark": "workspace:*",
+    "@zhenzichao/vue2-watermark-plugin": "workspace:*",
     "vue": "2.7.14"
   },
   "devDependencies": {
