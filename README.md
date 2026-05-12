@@ -2,6 +2,9 @@
 
 基于 Vue2 的通用插件库 monorepo，支持独立发布、独立安装、统一调试。
 
+## 🎨  项目地址
+👉  [预览地址](https://itzhenzichao.github.io/vue2-plugins/ "预览地址")   
+
 ## 特性
 
 - Vue2.7 + Vite + `vite-plugin-vue2`
