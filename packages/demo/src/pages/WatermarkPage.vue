@@ -2,7 +2,7 @@
   <div class="watermark-demo">
     <div class="demo-header">
       <h1 class="demo-title">Watermark 水印插件</h1>
-      <p class="demo-desc">@zhenzichao/watermark</p>
+      <p class="demo-desc">@zhenzichao/vue2-watermark-plugin</p>
     </div>
 
     <!-- 配置控制面板 -->
@@ -164,7 +164,7 @@
       <div class="code-example">
         <h4>1. Vue 插件方式（全局水印）</h4>
         <pre><code>// main.js
-import Watermark from '@zhenzichao/watermark'
+import Watermark from '@zhenzichao/vue2-watermark-plugin'
 Vue.use(Watermark, {
   content: ['CONFIDENTIAL'],
   global: true // 启用全局水印
@@ -185,7 +185,7 @@ Vue.use(Watermark, {
 
       <div class="code-example">
         <h4>3. 普通 JavaScript 方式</h4>
-        <pre><code>import { Watermark } from '@zhenzichao/watermark'
+        <pre><code>import { Watermark } from '@zhenzichao/vue2-watermark-plugin'
 
 // 创建水印实例
 const watermark = new Watermark({

@@ -22,7 +22,7 @@ importers:
       '@zhenzichao/vue2-svg-icon':
         specifier: workspace:*
         version: link:../svg-icon
-      '@zhenzichao/watermark':
+      '@zhenzichao/vue2-watermark-plugin':
         specifier: workspace:*
         version: link:../watermark
       vue:
