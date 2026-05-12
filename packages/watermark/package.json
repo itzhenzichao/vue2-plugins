@@ -1,6 +1,6 @@
 {
   "name": "@zhenzichao/vue2-watermark-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A professional watermark plugin for frontend applications - supports global and local watermarking with anti-tampering protection",
   "main": "dist/watermark.js",
   "module": "dist/watermark.mjs",
