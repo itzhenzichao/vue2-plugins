@@ -49,7 +49,7 @@ export default {
         {
           key: "watermark",
           title: "Watermark 水印",
-          sub: "@zhenzichao/watermark"
+          sub: "@zhenzichao/vue2-watermark-plugin"
         }
       ]
     };

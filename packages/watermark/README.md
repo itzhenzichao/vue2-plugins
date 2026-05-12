@@ -5,6 +5,16 @@
 [![npm version](https://img.shields.io/npm/v/@zhenzichao/vue2-watermark-plugin.svg)](https://www.npmjs.com/package/@zhenzichao/vue2-watermark-plugin)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+## 📖 详细使用文档 (必看)
+
+<div align="center">
+  <br />
+  <a href="https://itzhenzichao.github.io/vue2-plugins/">
+    <img src="https://img.shields.io/badge/查看在线文档与演示-1677ff?style=for-the-badge&logo=googledocs&logoColor=white" alt="Online Documentation" />
+  </a>
+  <br />
+</div>
+
 ## 特性
 
 - **全局/局部水印** — 支持全页面水印和指定容器内的局部水印
