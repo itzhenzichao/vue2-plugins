@@ -42,30 +42,33 @@ export default {
     VirtualListPage
   },
   data() {
+    const menu = [
+      {
+        key: "svg-icon",
+        title: "SvgIcon 图标",
+        sub: "@zhenzichao/vue2-svg-icon"
+      },
+      {
+        key: "watermark",
+        title: "Watermark 水印",
+        sub: "@zhenzichao/vue2-watermark-plugin"
+      },
+      {
+        key: "infinite-scroll",
+        title: "InfiniteScroll 无限滚动",
+        sub: "@zhenzichao/vue2-infinite-scroll"
+      },
+      {
+        key: "virtual-list",
+        title: "VirtualList 虚拟列表",
+        sub: "@zhenzichao/vue2-virtual-list"
+      }
+    ];
+    const hashKey = window.location.hash.slice(1);
+    const validKey = menu.find(m => m.key === hashKey);
     return {
-      activeKey: "svg-icon",
-      menu: [
-        {
-          key: "svg-icon",
-          title: "SvgIcon 图标",
-          sub: "@zhenzichao/vue2-svg-icon"
-        },
-        {
-          key: "watermark",
-          title: "Watermark 水印",
-          sub: "@zhenzichao/vue2-watermark-plugin"
-        },
-        {
-          key: "infinite-scroll",
-          title: "InfiniteScroll 无限滚动",
-          sub: "@zhenzichao/vue2-infinite-scroll"
-        },
-        {
-          key: "virtual-list",
-          title: "VirtualList 虚拟列表",
-          sub: "@zhenzichao/vue2-virtual-list"
-        }
-      ]
+      menu,
+      activeKey: validKey ? hashKey : "svg-icon",
     };
   },
   computed: {
@@ -75,6 +78,11 @@ export default {
       if (this.activeKey === "infinite-scroll") return InfiniteScrollPage;
       if (this.activeKey === "virtual-list") return VirtualListPage;
       return null;
+    }
+  },
+  watch: {
+    activeKey(key) {
+      window.location.hash = key;
     }
   }
 };
