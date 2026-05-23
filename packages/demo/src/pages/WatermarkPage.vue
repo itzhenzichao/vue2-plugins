@@ -280,7 +280,7 @@ export default {
     applyGlobalWatermark() {
       if (this.$watermark) {
         const rgbaColor = this.hexToRgba(this.config.color, this.config.opacity);
-        
+
         this.$watermark.init({
           fontSize: this.config.fontSize,
           color: rgbaColor,
@@ -294,31 +294,34 @@ export default {
           pointerEvents: this.config.pointerEvents,
           zIndex: this.config.zIndex
         });
+        this.$toast('全局水印已应用', 'success');
       }
     },
 
     removeWatermark() {
       if (this.$watermark) {
         this.$watermark.destroy();
+        this.$toast('水印已移除', 'info');
       }
     },
 
     updateLocalWatermark() {
-      // 修改局部水印配置
       this.localWatermarkConfig = {
         ...this.localWatermarkConfig,
         content: ['已更新-', '局部水印'],
         color: 'rgba(0, 128, 0, 0.1)'
       };
+      this.$toast('局部水印已更新', 'success');
     },
 
     resetConfig() {
       this.config = { ...this.defaultConfig };
       this.applyGlobalWatermark();
+      this.$toast('配置已重置', 'info');
     },
 
     handleClick() {
-      alert('点击成功！水印的点击穿透功能正常工作。');
+      this.$toast('点击成功！水印的点击穿透功能正常工作。', 'success');
     },
 
     hexToRgba(hex, opacity) {

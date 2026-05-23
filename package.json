@@ -10,6 +10,8 @@
     "build:demo": "pnpm --filter @zhenzichao/vue2-demo run build",
     "publish:svg": "pnpm --filter @zhenzichao/vue2-svg-icon publish --access public",
     "publish:watermark": "pnpm --filter @zhenzichao/vue2-watermark-plugin publish --access public",
+    "publish:infinite-scroll": "pnpm --filter @zhenzichao/vue2-infinite-scroll publish --access public",
+    "publish:virtual-list": "pnpm --filter @zhenzichao/vue2-virtual-list publish --access public",
     "publish:all": "pnpm -r --filter \"./packages/*\" --filter \"!./packages/demo\" publish --access public"
   },
   "devDependencies": {

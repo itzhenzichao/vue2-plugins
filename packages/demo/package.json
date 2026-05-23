@@ -10,6 +10,9 @@
   "dependencies": {
     "@zhenzichao/vue2-svg-icon": "workspace:*",
     "@zhenzichao/vue2-watermark-plugin": "workspace:*",
+    "@zhenzichao/vue2-infinite-scroll": "workspace:*",
+    "@zhenzichao/vue2-virtual-list": "workspace:*",
+    "@zhenzichao/vue2-toast": "workspace:*",
     "vue": "2.7.14"
   },
   "devDependencies": {

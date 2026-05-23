@@ -30,12 +30,16 @@
 <script>
 import SvgIconPage from "./pages/SvgIconPage.vue";
 import WatermarkPage from "./pages/WatermarkPage.vue";
+import InfiniteScrollPage from "./pages/InfiniteScrollPage.vue";
+import VirtualListPage from "./pages/VirtualListPage.vue";
 
 export default {
   name: "DemoApp",
   components: {
     SvgIconPage,
-    WatermarkPage
+    WatermarkPage,
+    InfiniteScrollPage,
+    VirtualListPage
   },
   data() {
     return {
@@ -50,6 +54,16 @@ export default {
           key: "watermark",
           title: "Watermark 水印",
           sub: "@zhenzichao/vue2-watermark-plugin"
+        },
+        {
+          key: "infinite-scroll",
+          title: "InfiniteScroll 无限滚动",
+          sub: "@zhenzichao/vue2-infinite-scroll"
+        },
+        {
+          key: "virtual-list",
+          title: "VirtualList 虚拟列表",
+          sub: "@zhenzichao/vue2-virtual-list"
         }
       ]
     };
@@ -58,6 +72,8 @@ export default {
     activePage() {
       if (this.activeKey === "watermark") return WatermarkPage;
       if (this.activeKey === "svg-icon") return SvgIconPage;
+      if (this.activeKey === "infinite-scroll") return InfiniteScrollPage;
+      if (this.activeKey === "virtual-list") return VirtualListPage;
       return null;
     }
   }

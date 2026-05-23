@@ -12,16 +12,25 @@ importers:
         version: 4.0.1(vite@4.5.14)
       vite-plugin-vue2:
         specifier: ^2.0.3
-        version: 2.0.3(vite@4.5.14)(vue-template-compiler@2.7.14)
+        version: 2.0.3(vite@4.5.14)(vue-template-compiler@2.7.14)(vue@2.7.14)
       vue-template-compiler:
         specifier: 2.7.14
         version: 2.7.14
 
   packages/demo:
     dependencies:
+      '@zhenzichao/vue2-infinite-scroll':
+        specifier: workspace:*
+        version: link:../infinite-scroll
       '@zhenzichao/vue2-svg-icon':
         specifier: workspace:*
         version: link:../svg-icon
+      '@zhenzichao/vue2-toast':
+        specifier: workspace:*
+        version: link:../toast
+      '@zhenzichao/vue2-virtual-list':
+        specifier: workspace:*
+        version: link:../virtual-list
       '@zhenzichao/vue2-watermark-plugin':
         specifier: workspace:*
         version: link:../watermark
@@ -33,10 +42,70 @@ importers:
         specifier: ^2.0.1
         version: 2.0.1(vite@4.5.14)
 
+  packages/infinite-scroll:
+    dependencies:
+      vue:
+        specifier: ^2.7.14
+        version: 2.7.14
+    devDependencies:
+      vite:
+        specifier: ^4.5.14
+        version: 4.5.14
+      vite-plugin-css-injected-by-js:
+        specifier: ^4.0.1
+        version: 4.0.1(vite@4.5.14)
+      vite-plugin-vue2:
+        specifier: ^2.0.3
+        version: 2.0.3(vite@4.5.14)(vue-template-compiler@2.7.14)(vue@2.7.14)
+      vue-template-compiler:
+        specifier: 2.7.14
+        version: 2.7.14
+
   packages/svg-icon:
     dependencies:
       vue:
         specifier: ^2.7.14
+        version: 2.7.14
+
+  packages/toast:
+    dependencies:
+      vue:
+        specifier: ^2.7.14
+        version: 2.7.14
+    devDependencies:
+      vite:
+        specifier: ^4.5.14
+        version: 4.5.14
+      vite-plugin-css-injected-by-js:
+        specifier: ^4.0.1
+        version: 4.0.1(vite@4.5.14)
+      vite-plugin-vue2:
+        specifier: ^2.0.3
+        version: 2.0.3(vite@4.5.14)(vue-template-compiler@2.7.14)(vue@2.7.14)
+      vue-template-compiler:
+        specifier: 2.7.14
+        version: 2.7.14
+
+  packages/virtual-list:
+    dependencies:
+      vue:
+        specifier: ^2.7.14
+        version: 2.7.14
+      vue-virtual-scroller:
+        specifier: ^1.0.14
+        version: 1.1.0(vue@2.7.14)
+    devDependencies:
+      vite:
+        specifier: ^4.5.14
+        version: 4.5.14
+      vite-plugin-css-injected-by-js:
+        specifier: ^4.0.1
+        version: 4.0.1(vite@4.5.14)
+      vite-plugin-vue2:
+        specifier: ^2.0.3
+        version: 2.0.3(vite@4.5.14)(vue-template-compiler@2.7.14)(vue@2.7.14)
+      vue-template-compiler:
+        specifier: 2.7.14
         version: 2.7.14
 
   packages/watermark:
@@ -743,7 +812,7 @@ packages:
       - supports-color
     dev: true
 
-  /@vue/babel-preset-jsx@1.4.0(@babel/core@7.29.0):
+  /@vue/babel-preset-jsx@1.4.0(@babel/core@7.29.0)(vue@2.7.14):
     resolution: {integrity: sha512-QmfRpssBOPZWL5xw7fOuHNifCQcNQC1PrOo/4fu6xlhlKJJKSA3HqX92Nvgyx8fqHZTUGMPHmFA+IDqwXlqkSA==}
     peerDependencies:
       '@babel/core': ^7.0.0-0
@@ -761,6 +830,7 @@ packages:
       '@vue/babel-sugar-inject-h': 1.4.0(@babel/core@7.29.0)
       '@vue/babel-sugar-v-model': 1.4.0(@babel/core@7.29.0)
       '@vue/babel-sugar-v-on': 1.4.0(@babel/core@7.29.0)
+      vue: 2.7.14
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -836,7 +906,6 @@ packages:
       '@babel/parser': 7.29.2
       postcss: 8.5.8
       source-map: 0.6.1
-    dev: false
 
   /@vue/component-compiler-utils@3.3.0:
     resolution: {integrity: sha512-97sfH2mYNU+2PzGrmK2haqffDpVASuib9/w2/noxiFi31Z54hW+q3izKQXXQZSNhtiUpAI36uSuYepeBe4wpHQ==}
@@ -1528,7 +1597,6 @@ packages:
 
   /csstype@3.2.3:
     resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
-    dev: false
 
   /data-view-buffer@1.0.2:
     resolution: {integrity: sha512-EmKO5V3OLXh1rtK2wgXRansaK1/mtVdTUEiEI0W8RkvgT05kfxaH29PliLnpLP73yYO6142Q72QNa8Wx/A5CqQ==}
@@ -2924,6 +2992,10 @@ packages:
     engines: {node: '>=11.0.0'}
     dev: true
 
+  /scrollparent@2.1.0:
+    resolution: {integrity: sha512-bnnvJL28/Rtz/kz2+4wpBjHzWoEzXhVg/TE8BeVGJHUqE8THNIRnDxDWMktwM+qahvlRdvlLdsQfYe+cuqfZeA==}
+    dev: false
+
   /semver@6.3.1:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
     hasBin: true
@@ -3400,7 +3472,7 @@ packages:
       - supports-color
     dev: true
 
-  /vite-plugin-vue2@2.0.3(vite@4.5.14)(vue-template-compiler@2.7.14):
+  /vite-plugin-vue2@2.0.3(vite@4.5.14)(vue-template-compiler@2.7.14)(vue@2.7.14):
     resolution: {integrity: sha512-t3Tu93GWsMHbpeIv66MTO5e/rRAo8/+/eWoUtFYuAdKDMyEnn1dqsrXh+CfG+SJAlxJvcTP8U0eXkzhLjKNyMg==}
     peerDependencies:
       vite: ^2.0.0 || ^3.0.0 || ^4.0.0
@@ -3422,7 +3494,7 @@ packages:
       '@babel/plugin-transform-typescript': 7.28.6(@babel/core@7.29.0)
       '@rollup/pluginutils': 4.2.1
       '@vue/babel-helper-vue-jsx-merge-props': 1.4.0
-      '@vue/babel-preset-jsx': 1.4.0(@babel/core@7.29.0)
+      '@vue/babel-preset-jsx': 1.4.0(@babel/core@7.29.0)(vue@2.7.14)
       '@vue/component-compiler-utils': 3.3.0
       consolidate: 0.16.0
       debug: 4.4.3
@@ -3530,6 +3602,18 @@ packages:
       fsevents: 2.3.3
     dev: true
 
+  /vue-observe-visibility@0.4.6:
+    resolution: {integrity: sha512-xo0CEVdkjSjhJoDdLSvoZoQrw/H2BlzB5jrCBKGZNXN2zdZgMuZ9BKrxXDjNP2AxlcCoKc8OahI3F3r3JGLv2Q==}
+    dev: false
+
+  /vue-resize@0.4.5(vue@2.7.14):
+    resolution: {integrity: sha512-bhP7MlgJQ8TIkZJXAfDf78uJO+mEI3CaLABLjv0WNzr4CcGRGPIAItyWYnP6LsPA4Oq0WE+suidNs6dgpO4RHg==}
+    peerDependencies:
+      vue: ^2.3.0
+    dependencies:
+      vue: 2.7.14
+    dev: false
+
   /vue-template-babel-compiler@1.2.0(vue-template-compiler@2.7.14):
     resolution: {integrity: sha512-CScBSX1/wCdmmZ/Lvj/63p2CCVTS0FMj0F69VRBo73CuJrjvPAPGmeNJ7D/cwt/VS2PduowRWbO8N4Zh4Z3b0g==}
     engines: {node: '>=12.0.0'}
@@ -3564,13 +3648,23 @@ packages:
     resolution: {integrity: sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==}
     dev: true
 
+  /vue-virtual-scroller@1.1.0(vue@2.7.14):
+    resolution: {integrity: sha512-1PJb20XY9lq3nn30+AgTsBtnqTSMRiKi+UTjUHw9vaH6m1bUUfpgs2eFcWaurd3Nr11RCIGYInTA8lqkmS9scg==}
+    peerDependencies:
+      vue: ^2.6.11
+    dependencies:
+      scrollparent: 2.1.0
+      vue: 2.7.14
+      vue-observe-visibility: 0.4.6
+      vue-resize: 0.4.5(vue@2.7.14)
+    dev: false
+
   /vue@2.7.14:
     resolution: {integrity: sha512-b2qkFyOM0kwqWFuQmgd4o+uHGU7T+2z3T+WQp8UBjADfEv2n4FEMffzBmCKNP0IGzOEEfYjvtcC62xaSKeQDrQ==}
     deprecated: Vue 2 has reached EOL and is no longer actively maintained. See https://v2.vuejs.org/eol/ for more details.
     dependencies:
       '@vue/compiler-sfc': 2.7.14
       csstype: 3.2.3
-    dev: false
 
   /which-boxed-primitive@1.1.1:
     resolution: {integrity: sha512-TbX3mj8n0odCBFVlY8AxkqcHASw3L60jIuF8jFP78az3C2YhmGvqbHBpAjTRH2/xqYunrJ9g1jSyjCjpoWzIAA==}

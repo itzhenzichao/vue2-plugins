@@ -1,0 +1,48 @@
+{
+  "name": "@zhenzichao/vue2-virtual-list",
+  "version": "0.1.0",
+  "description": "A virtual scroll list plugin for Vue 2 - wraps vue-virtual-scroller with simplified API for large data rendering",
+  "main": "dist/virtual-list.js",
+  "module": "dist/virtual-list.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/virtual-list.mjs",
+      "require": "./dist/virtual-list.js"
+    },
+    "./dist/*": "./dist/*"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite build --watch"
+  },
+  "keywords": [
+    "virtual-scroll",
+    "virtual-list",
+    "performance",
+    "large-data",
+    "vue2",
+    "component"
+  ],
+  "author": "zhenzichao",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:itzhenzichao/vue2-plugins.git"
+  },
+  "peerDependencies": {
+    "vue": "^2.7.14"
+  },
+  "dependencies": {
+    "vue-virtual-scroller": "^1.0.14"
+  },
+  "devDependencies": {
+    "vite": "^4.5.14",
+    "vue-template-compiler": "2.7.14",
+    "vite-plugin-vue2": "^2.0.3",
+    "vite-plugin-css-injected-by-js": "^4.0.1"
+  }
+}

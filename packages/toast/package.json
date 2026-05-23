@@ -1,0 +1,39 @@
+{
+  "name": "@zhenzichao/vue2-toast",
+  "version": "0.1.0",
+  "description": "A lightweight toast notification plugin for Vue 2",
+  "main": "dist/toast.js",
+  "module": "dist/toast.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/toast.mjs",
+      "require": "./dist/toast.js"
+    },
+    "./dist/*": "./dist/*"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite build --watch"
+  },
+  "keywords": [
+    "toast",
+    "message",
+    "notification",
+    "vue2"
+  ],
+  "author": "zhenzichao",
+  "license": "MIT",
+  "peerDependencies": {
+    "vue": "^2.7.14"
+  },
+  "devDependencies": {
+    "vite": "^4.5.14",
+    "vue-template-compiler": "2.7.14",
+    "vite-plugin-vue2": "^2.0.3",
+    "vite-plugin-css-injected-by-js": "^4.0.1"
+  }
+}
