@@ -54,7 +54,7 @@ this.$refs.scroll.reset()</code></pre>
             <tr><td>is-empty</td><td>是否为空数据状态，为 true 时显示 empty 插槽</td><td>Boolean</td><td>false</td></tr>
             <tr><td>throttle</td><td>节流间隔（ms），防止频繁触发</td><td>Number</td><td>300</td></tr>
             <tr><td>loading-text</td><td>加载中文案</td><td>String</td><td>加载中...</td></tr>
-            <tr><td>finished-text</td><td>加载完毕文案</td><td>String</td><td>—</td></tr>
+            <tr><td>finished-text</td><td>加载完毕文案</td><td>String</td><td>--到底了--</td></tr>
           </tbody>
         </table>
       </div>
@@ -88,13 +88,8 @@ this.$refs.scroll.reset()</code></pre>
       ref="scroll"
       :load-more="loadMore"
       :is-empty="list.length === 0"
-      :throttle="800"
       loading-text="正在加载更多数据..."
-      finished-text="已加载全部数据"
     >
-    <template #before>
-      <div class="test">123</div>
-</template>
       <div v-for="(item, index) in list"
       :id="index"
       :key="index" class="list-item">
@@ -292,8 +287,7 @@ export default {
   font-weight: 500;
   flex-shrink: 0;
 }
-
-::v-deep .empty-state {
+.empty-state {
   display: flex;
   flex-direction: column;
   align-items: center;

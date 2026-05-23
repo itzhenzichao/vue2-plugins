@@ -1,10 +1,12 @@
 <template>
   <div class="zc-infinite-scroll">
     <slot v-if="!isEmpty" />
-    <slot name="empty" v-if="isEmpty && !loading" />
+    <div ref="sentinel" class="zc-infinite-scroll-sentinel" />
+    <div>
+      <slot name="empty" v-if="isEmpty && !loading" />
+    </div>
     <div v-if="loading" class="zc-infinite-scroll-loading">{{ loadingText }}</div>
     <div v-if="finished && !isEmpty" class="zc-infinite-scroll-finished">{{ finishedText }}</div>
-    <div ref="sentinel" class="zc-infinite-scroll-sentinel" />
   </div>
 </template>
 
@@ -31,7 +33,7 @@ export default {
     },
     finishedText: {
       type: String,
-      default: ''
+      default: '--到底了--'
     }
   },
 
@@ -62,7 +64,6 @@ export default {
 
       this.observer = new IntersectionObserver((entries) => {
         const entry = entries[0];
-        console.log('===entry', entry)
         if (entry.isIntersecting) {
           this.triggerLoad();
         }
@@ -79,7 +80,6 @@ export default {
     },
 
     triggerLoad() {
-      console.log('===triggerLoad===',this.loading,this.finished);
       if (this.loading || this.finished) return;
 
       const now = Date.now();
@@ -126,6 +126,10 @@ export default {
       this.finished = false;
       this.loading = false;
       this.lastLoadEndTime = 0;
+      this.destroyObserver();
+      this.$nextTick(() => {
+        this.initObserver();
+      });
     },
 
     checkAndLoad() {
