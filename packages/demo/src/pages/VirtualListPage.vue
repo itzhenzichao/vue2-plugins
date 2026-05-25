@@ -8,7 +8,7 @@
     <!-- 固定高度示例 -->
     <div class="demo-section">
       <h3>固定高度列表 (RecycledScroller)</h3>
-      <p class="section-desc">每项高度固定，性能最优，适合表格行、固定卡片等场景</p>
+      <p class="section-desc">每项高度固定，性能最优，适合表格行、固定卡片等场景。当前数据量：{{ itemCount }}条</p>
 
       <ZcVirtualList
         :items="fixedItems"
@@ -28,7 +28,7 @@
     <!-- 动态高度示例 -->
     <div class="demo-section">
       <h3>动态高度列表 (DynamicScroller)</h3>
-      <p class="section-desc">每项高度可变，自动测量，适合聊天消息、评论等场景</p>
+      <p class="section-desc">每项高度可变，自动测量，适合聊天消息、评论等场景。当前数据量：{{ itemCount }}条</p>
 
       <ZcVirtualList
         :items="dynamicItems"
@@ -56,20 +56,41 @@
       </ZcVirtualList>
     </div>
 
-    <!-- 配置控制 -->
+    <!-- 无限滚动加载示例 -->
     <div class="demo-section">
-      <h3>数据量控制</h3>
+      <h3>无限滚动加载</h3>
+      <p class="section-desc">初始加载30条，滚动到底部自动加载，可通过按钮手动停止</p>
 
-      <div class="control-group">
-        <label>当前数据量：</label>
-        <span class="value">{{ itemCount }} 条</span>
-      </div>
+      <ZcVirtualList
+        ref="loadScroll"
+        :items="loadItems"
+        :item-size="50"
+        key-field="id"
+        :load-more="loadMoreFn"
+        class="demo-scroller"
+      >
+        <template #default="{ item }">
+          <div class="fixed-item">
+            <span class="item-id">{{ item.id }}</span>
+            <span class="item-name">{{ item.name }}</span>
+          </div>
+        </template>
+        <template #loading>
+          <div class="custom-loading">
+            <div class="spinner"></div>
+            <span>正在加载更多数据...</span>
+          </div>
+        </template>
+        <template #finished>
+          <div class="custom-finished">
+            <span class="finished-icon">✓</span>
+            <span>已加载全部数据</span>
+          </div>
+        </template>
+      </ZcVirtualList>
 
-      <div class="control-actions">
-        <button class="btn btn-primary" @click="addItems(1000)">+1000</button>
-        <button class="btn btn-primary" @click="addItems(5000)">+5000</button>
-        <button class="btn btn-secondary" @click="resetItems">重置</button>
-      </div>
+      <button class="btn btn-danger" style="margin-top: 12px;" @click="stopLoad">停止加载</button>
+      <button class="btn btn-danger" style="margin-top: 12px;" @click="resetLoad">重新加载</button>
     </div>
 
     <!-- 功能特性 -->
@@ -171,22 +192,28 @@ export default {
     return {
       fixedItems: generateFixedItems(1000),
       dynamicItems: generateDynamicItems(1000),
-      itemCount: 1000
+      itemCount: 1000,
+      loadItems: generateFixedItems(30),
+      loadCount: 0
     };
   },
   methods: {
-    addItems(count) {
-      const start = this.itemCount;
-      this.fixedItems.push(...generateFixedItems(count, start));
-      this.dynamicItems.push(...generateDynamicItems(count, start));
-      this.itemCount += count;
-      this.$toast(`已添加 ${count} 条数据，当前共 ${this.itemCount} 条`, 'success');
+    loadMoreFn() {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          const start = this.loadItems.length;
+          this.loadItems.push(...generateFixedItems(30, start));
+          resolve(false);
+        }, 200);
+      });
     },
-    resetItems() {
-      this.fixedItems = generateFixedItems(1000);
-      this.dynamicItems = generateDynamicItems(1000);
-      this.itemCount = 1000;
-      this.$toast('列表已重置', 'info');
+    stopLoad() {
+      this.$refs.loadScroll.finish();
+      this.$toast('已停止加载', 'success');
+    },
+    resetLoad() {
+      this.$refs.loadScroll.reset();
+      this.loadItems = generateFixedItems(30);
     }
   }
 };
@@ -382,5 +409,50 @@ export default {
   font-size: 13px;
   color: #1f2329;
   font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+}
+
+.custom-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 0;
+  color: #999;
+  font-size: 14px;
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #e5e6eb;
+  border-top-color: #1677ff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-right: 10px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.custom-finished {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 0;
+  color: #999;
+  font-size: 14px;
+}
+
+.finished-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #52c41a;
+  color: #fff;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
 }
 </style>
