@@ -1,12 +1,16 @@
 <template>
   <div class="zc-infinite-scroll">
     <slot v-if="!isEmpty" />
-    <div ref="sentinel" class="zc-infinite-scroll-sentinel" />
     <div>
       <slot name="empty" v-if="isEmpty && !loading" />
     </div>
-    <div v-if="loading" class="zc-infinite-scroll-loading">{{ loadingText }}</div>
-    <div v-if="finished && !isEmpty" class="zc-infinite-scroll-finished">{{ finishedText }}</div>
+    <div v-if="loading" class="zc-infinite-scroll-loading">
+      <slot name="loading">{{ loadingText }}</slot>
+    </div>
+    <div v-if="finished && !isEmpty" class="zc-infinite-scroll-finished">
+      <slot name="finished">{{ finishedText }}</slot>
+    </div>
+    <div ref="sentinel" class="zc-infinite-scroll-sentinel" />
   </div>
 </template>
 
@@ -104,9 +108,10 @@ export default {
       this.loading = true;
       const result = this.loadMore();
       if (result && typeof result.then === 'function') {
-        result.then(() => {
+        result.then((isFinished) => {
           this.loading = false;
           this.lastLoadEndTime = Date.now();
+          if (isFinished) this.finished = true;
           this.checkAndLoad();
         }).catch(() => {
           this.loading = false;
