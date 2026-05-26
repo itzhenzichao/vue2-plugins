@@ -1,12 +1,17 @@
 <template>
   <div class="wrap">
+    <div class="demo-header">
+      <h1 class="demo-title">SvgIcon 图标</h1>
+      <p class="demo-desc">@zhenzichao/vue2-svg-icon</p>
+    </div>
+
     <section class="panel">
       <h2 class="panel-title">动态演示</h2>
       <div class="demo-container">
         <!-- 控制面板 -->
         <div class="controls">
           <div class="control-item">
-            <label>选择图标</label>
+            <label>选择svg图片</label>
             <select v-model="kkCurrentIcon" class="kk-select">
               <option v-for="icon in kkIconList" :key="icon" :value="icon">
                 {{ icon }}
@@ -202,7 +207,7 @@ Vue.use(SvgIconPlugin);</code></pre>
       </div>
 
       <div class="tips">
-        <strong>💡 最佳实践</strong>：只推荐用于“单色 / 可统一染色”的图标。素材导出时尽量不要带内联样式，或者通过插件配置 <code>svgo</code> 自动移除 <code>fill/stroke/color/width/height/style</code> 等属性，确保图标完全受 CSS 控制。
+        <strong>💡 最佳实践</strong>：只推荐用于“单色 / 可统一染色”的svg图片。素材导出时尽量不要带内联样式，或者通过插件配置 <code>svgo</code> 自动移除 <code>fill/stroke/color/width/height/style</code> 等属性，确保图标完全受 CSS 控制。
       </div>
     </section>
   </div>
@@ -236,7 +241,22 @@ export default {
   max-width: 1000px;
   margin: 0 auto;
 }
+.demo-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
 
+.demo-title {
+  font-size: 32px;
+  margin: 0 0 8px 0;
+  color: #1f2329;
+}
+
+.demo-desc {
+  font-size: 14px;
+  color: #4e5969;
+  margin: 0;
+}
 .panel {
   border: 1px solid #e5e6eb;
   border-radius: 12px;

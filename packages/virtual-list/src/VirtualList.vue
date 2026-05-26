@@ -1,14 +1,16 @@
 <template>
+  <div v-if="isEmpty && !loading" class="zc-virtual-list-empty" :style="containerStyle">
+    <slot name="empty" />
+  </div>
   <RecycleScroller
-    v-if="!dynamic"
+    v-else-if="!dynamic"
     ref="scroller"
     :items="items"
     :item-size="itemSize"
     :key-field="keyField"
-    :list-class="listClass"
-    :list-style="listStyle"
     :buffer="buffer"
     :page-mode="pageMode"
+    :style="containerStyle"
     class="zc-virtual-list"
     v-on="$listeners"
   >
@@ -27,22 +29,18 @@
         <slot name="finished">{{ finishedText }}</slot>
       </div>
       <div v-if="loadMore && !finished" ref="sentinel" class="zc-virtual-list-sentinel" />
-    </template>
-    <template #empty>
-      <slot name="empty" />
     </template>
   </RecycleScroller>
 
   <DynamicScroller
-    v-else
+    v-else-if="dynamic"
     ref="scroller"
     :items="items"
     :min-item-size="minItemSize"
     :key-field="keyField"
-    :list-class="listClass"
-    :list-style="listStyle"
     :buffer="buffer"
     :page-mode="pageMode"
+    :style="containerStyle"
     class="zc-virtual-list"
     v-on="$listeners"
   >
@@ -61,9 +59,6 @@
         <slot name="finished">{{ finishedText }}</slot>
       </div>
       <div v-if="loadMore && !finished" ref="sentinel" class="zc-virtual-list-sentinel" />
-    </template>
-    <template #empty>
-      <slot name="empty" />
     </template>
   </DynamicScroller>
 </template>
@@ -102,19 +97,19 @@ export default {
       type: String,
       default: 'id'
     },
-    listClass: {
-      type: String,
+    height: {
+      type: [Number, String],
       default: ''
-    },
-    listStyle: {
-      type: Object,
-      default: () => ({})
     },
     buffer: {
       type: Number,
       default: 200
     },
     pageMode: {
+      type: Boolean,
+      default: false
+    },
+    isEmpty: {
       type: Boolean,
       default: false
     },
@@ -133,6 +128,14 @@ export default {
     finishedText: {
       type: String,
       default: '加载完成'
+    }
+  },
+
+  computed: {
+    containerStyle() {
+      if (!this.height) return {};
+      const h = typeof this.height === 'number' ? `${this.height}px` : this.height;
+      return { height: h };
     }
   },
 
@@ -279,6 +282,10 @@ export default {
   padding: 12px 0;
   color: #999;
   font-size: 14px;
+}
+
+.zc-virtual-list-empty {
+  width: 100%;
 }
 
 .zc-virtual-list-sentinel {
