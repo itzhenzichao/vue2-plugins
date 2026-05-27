@@ -50,7 +50,7 @@ Vue.use(InfiniteScroll)
 
 ```vue
 <template>
-  <ZcInfiniteScroll :load-more="loadMore" :is-empty="list.length === 0 && !loading">
+  <ZcInfiniteScroll :load-more="loadMore" :is-empty="list.length === 0">
     <div v-for="item in list" :key="item.id">{{ item.name }}</div>
   </ZcInfiniteScroll>
 </template>
@@ -60,8 +60,7 @@ export default {
   data() {
     return {
       list: [],
-      page: 1,
-      loading: false
+      page: 1
     }
   },
   methods: {
