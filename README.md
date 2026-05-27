@@ -21,8 +21,12 @@ vue2-plugins/
 ├── pnpm-workspace.yaml
 ├── README.md
 └── packages/
-    ├── demo/
-    └── dialog/
+    ├── svg-icon/          → @zhenzichao/vue2-svg-icon
+    ├── watermark/         → @zhenzichao/vue2-watermark-plugin
+    ├── infinite-scroll/   → @zhenzichao/vue2-infinite-scroll
+    ├── virtual-list/      → @zhenzichao/vue2-virtual-list
+    ├── toast/             → @zhenzichao/vue2-toast
+    └── demo/              → @zhenzichao/vue2-demo (私有，开发预览)
 ```
 
 ## 快速开始
@@ -33,11 +37,16 @@ pnpm dev
 pnpm build
 ```
 
-## 根脚本
+## 常用脚本
 
-- `pnpm dev`：启动 `packages/demo`
-- `pnpm build`：构建所有插件包（不包含 demo）
-- `pnpm publish:all`：发布所有插件包到 npm
+| 命令 | 说明 |
+|------|------|
+| `pnpm dev` | 启动 demo 开发服务器 |
+| `pnpm build` | 构建所有插件（不含 demo） |
+| `pnpm build:<插件名>` | 构建单个插件，如 `pnpm build:infinite-scroll` |
+| `pnpm build:demo` | 构建 demo 用于部署 |
+| `pnpm publish:<插件名>` | 发布单个插件，如 `pnpm publish:svg-icon` |
+| `pnpm publish:all` | 发布所有插件到 npm |
 
 ## 使用说明（通用）
 

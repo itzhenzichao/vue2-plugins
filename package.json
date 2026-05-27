@@ -6,12 +6,17 @@
   "scripts": {
     "dev": "pnpm --filter @zhenzichao/vue2-demo dev",
     "build": "pnpm -r --filter \"./packages/*\" --filter \"!./packages/demo\" run build",
-    "build:svg": "pnpm --filter @zhenzichao/vue2-svg-icon run build",
+    "build:svg-icon": "pnpm --filter @zhenzichao/vue2-svg-icon run build",
+    "build:watermark": "pnpm --filter @zhenzichao/vue2-watermark-plugin run build",
+    "build:infinite-scroll": "pnpm --filter @zhenzichao/vue2-infinite-scroll run build",
+    "build:virtual-list": "pnpm --filter @zhenzichao/vue2-virtual-list run build",
+    "build:toast": "pnpm --filter @zhenzichao/vue2-toast run build",
     "build:demo": "pnpm --filter @zhenzichao/vue2-demo run build",
-    "publish:svg": "pnpm --filter @zhenzichao/vue2-svg-icon publish --access public",
+    "publish:svg-icon": "pnpm --filter @zhenzichao/vue2-svg-icon publish --access public",
     "publish:watermark": "pnpm --filter @zhenzichao/vue2-watermark-plugin publish --access public",
     "publish:infinite-scroll": "pnpm --filter @zhenzichao/vue2-infinite-scroll publish --access public",
     "publish:virtual-list": "pnpm --filter @zhenzichao/vue2-virtual-list publish --access public",
+    "publish:toast": "pnpm --filter @zhenzichao/vue2-toast publish --access public",
     "publish:all": "pnpm -r --filter \"./packages/*\" --filter \"!./packages/demo\" publish --access public"
   },
   "devDependencies": {
