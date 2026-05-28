@@ -160,17 +160,18 @@ this.$refs.scroll.reset()</code></pre>
     <!-- 空状态示例 -->
     <div class="demo-section">
       <h3>4. 空状态</h3>
-      <p class="section-desc">当 items 为空数组且 isEmpty 为 true 时显示 empty 插槽</p>
+      <p class="section-desc">当 items 为空数组时自动显示 empty 插槽，配合 loadMore 可判断是否真实为空</p>
       <div class="demo-actions">
         <button class="btn btn-danger" @click="setEmptyState">切换空状态</button>
         <button class="btn btn-secondary" @click="resetEmptyState">恢复数据</button>
       </div>
       <ZcVirtualList
+        ref="emptyScroll"
         :items="emptyStateItems"
         :item-size="50"
         height="400px"
         key-field="id"
-        :is-empty="emptyStateItems.length === 0"
+        :load-more="loadMoreFn2"
         class="demo-scroller"
       >
         <template #default="{ item }">
@@ -191,7 +192,7 @@ this.$refs.scroll.reset()</code></pre>
   :items="list"
   :item-size="50"
   key-field="id"
-  :is-empty="list.length === 0"&gt;
+  :load-more="loadMore"&gt;
   &lt;template #default="{ item }"&gt;
     &lt;div&gt;{{ item.name }}&lt;/div&gt;
   &lt;/template&gt;
@@ -287,15 +288,30 @@ export default {
       fixedItems: generateFixedItems(1000),
       dynamicItems: generateDynamicItems(1000),
       loadItems: generateFixedItems(30),
-      emptyStateItems: generateFixedItems(100)
+      emptyStateItems: [],
+      emptyStateFinished: false
     };
   },
   methods: {
     loadMoreFn() {
       return new Promise((resolve) => {
         setTimeout(() => {
+          console.log('==')
           const start = this.loadItems.length;
           this.loadItems.push(...generateFixedItems(30, start));
+          resolve(false);
+        }, 200);
+      });
+    },
+    loadMoreFn2() {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          if (this.emptyStateFinished) {
+            resolve(true);
+            return;
+          }
+          const start = this.emptyStateItems.length;
+          this.emptyStateItems.push(...generateFixedItems(30, start));
           resolve(false);
         }, 200);
       });
@@ -310,10 +326,14 @@ export default {
     },
     setEmptyState() {
       this.emptyStateItems = [];
+      this.emptyStateFinished = true;
+      this.$refs.emptyScroll && this.$refs.emptyScroll.reset();
       this.$toast('已切换空状态', 'warning');
     },
     resetEmptyState() {
-      this.emptyStateItems = generateFixedItems(100);
+      this.emptyStateItems = [];
+      this.emptyStateFinished = false;
+      this.$refs.emptyScroll && this.$refs.emptyScroll.reset();
       this.$toast('数据已恢复', 'success');
     }
   }

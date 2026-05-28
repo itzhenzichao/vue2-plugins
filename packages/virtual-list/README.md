@@ -107,7 +107,7 @@ export default {
 
 | 参数 | 类型 | 默认值 | 说明 |
 |------|------|--------|------|
-| `items` | `Array` | — | **必填**，列表数据数组 |
+| `items` | `Array` | — | **必填**，列表数据数组，为空时自动显示 empty 插槽 |
 | `dynamic` | `Boolean` | `false` | 是否使用动态高度模式（`true` 使用 DynamicScroller） |
 | `itemSize` | `Number \| String` | `50` | 固定模式下每项高度（px） |
 | `minItemSize` | `Number \| String` | `40` | 动态模式下最小项高度（px） |
@@ -115,7 +115,6 @@ export default {
 | `height` | `Number \| String` | `''` | 容器高度，数字为 px，字符串直接使用（如 `'100vh'`），空则无固定高度 |
 | `buffer` | `Number` | `200` | 视口外额外渲染的缓冲距离（px） |
 | `pageMode` | `Boolean` | `false` | 使用页面作为滚动容器而非组件自身 |
-| `isEmpty` | `Boolean` | `false` | 当前数据是否为空 |
 | `loadMore` | `Function` | `null` | 触底加载函数，返回 Promise，resolve 为 `true` 表示完毕 |
 | `throttle` | `Number` | `300` | 两次加载之间的最小间隔时间（ms） |
 | `loadingText` | `String` | `'加载中...'` | 加载状态提示文字 |
@@ -128,7 +127,7 @@ export default {
 | `default` | `{ item, index, active }` | 列表项内容，必须使用作用域插槽 |
 | `before` | — | 列表前置内容 |
 | `after` | — | 列表后置内容 |
-| `empty` | — | 空状态内容，`isEmpty` 为 `true` 且非加载中时渲染 |
+| `empty` | — | 空状态内容，`items` 为空且加载完毕时渲染 |
 | `loading` | — | 自定义加载提示，默认显示 `loadingText` |
 | `finished` | — | 自定义加载完毕提示，默认显示 `finishedText` |
 

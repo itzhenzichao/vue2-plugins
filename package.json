@@ -5,6 +5,7 @@
   "packageManager": "pnpm@10.2.0",
   "scripts": {
     "dev": "pnpm --filter @zhenzichao/vue2-demo dev",
+    "dev:dist": "pnpm build && DEV_DIST=1 pnpm --filter @zhenzichao/vue2-demo dev",
     "build": "pnpm -r --filter \"./packages/*\" --filter \"!./packages/demo\" run build",
     "build:svg-icon": "pnpm --filter @zhenzichao/vue2-svg-icon run build",
     "build:watermark": "pnpm --filter @zhenzichao/vue2-watermark-plugin run build",

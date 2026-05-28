@@ -16,10 +16,11 @@ export default defineConfig({
       fileName: (format) => `virtual-list.${format === 'es' ? 'mjs' : 'js'}`
     },
     rollupOptions: {
-      external: ['vue'],
+      external: ['vue', 'vue-virtual-scroller'],
       output: {
         globals: {
-          vue: 'Vue'
+          vue: 'Vue',
+          'vue-virtual-scroller': 'VueVirtualScroller'
         },
         exports: 'named'
       }

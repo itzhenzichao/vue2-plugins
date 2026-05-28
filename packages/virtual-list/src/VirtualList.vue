@@ -1,9 +1,6 @@
 <template>
-  <div v-if="isEmpty && !loading" class="zc-virtual-list-empty" :style="containerStyle">
-    <slot name="empty" />
-  </div>
   <RecycleScroller
-    v-else-if="!dynamic"
+    v-if="!dynamic"
     ref="scroller"
     :items="items"
     :item-size="itemSize"
@@ -22,10 +19,13 @@
     </template>
     <template #after>
       <slot name="after" />
+      <div v-if="isInnerEmpty && finished" class="zc-virtual-list-empty">
+        <slot name="empty" />
+      </div>
       <div v-if="loading" class="zc-virtual-list-loading">
         <slot name="loading">{{ loadingText }}</slot>
       </div>
-      <div v-if="finished" class="zc-virtual-list-finished">
+      <div v-if="finished && !isInnerEmpty" class="zc-virtual-list-finished">
         <slot name="finished">{{ finishedText }}</slot>
       </div>
       <div v-if="loadMore && !finished" ref="sentinel" class="zc-virtual-list-sentinel" />
@@ -33,7 +33,7 @@
   </RecycleScroller>
 
   <DynamicScroller
-    v-else-if="dynamic"
+    v-else
     ref="scroller"
     :items="items"
     :min-item-size="minItemSize"
@@ -52,10 +52,13 @@
     </template>
     <template #after>
       <slot name="after" />
+      <div v-if="isInnerEmpty && finished" class="zc-virtual-list-empty">
+        <slot name="empty" />
+      </div>
       <div v-if="loading" class="zc-virtual-list-loading">
         <slot name="loading">{{ loadingText }}</slot>
       </div>
-      <div v-if="finished" class="zc-virtual-list-finished">
+      <div v-if="finished && !isInnerEmpty" class="zc-virtual-list-finished">
         <slot name="finished">{{ finishedText }}</slot>
       </div>
       <div v-if="loadMore && !finished" ref="sentinel" class="zc-virtual-list-sentinel" />
@@ -109,10 +112,6 @@ export default {
       type: Boolean,
       default: false
     },
-    isEmpty: {
-      type: Boolean,
-      default: false
-    },
     loadMore: {
       type: Function,
       default: null
@@ -132,6 +131,9 @@ export default {
   },
 
   computed: {
+    isInnerEmpty() {
+      return this.items.length === 0;
+    },
     containerStyle() {
       if (!this.height) return {};
       const h = typeof this.height === 'number' ? `${this.height}px` : this.height;
