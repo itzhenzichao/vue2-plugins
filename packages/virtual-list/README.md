@@ -21,7 +21,7 @@
 - **海量数据渲染** — 只渲染可视区域内的 DOM 节点，轻松处理万级以上数据列表
 - **无限加载集成** — 内置 IntersectionObserver 无限加载支持，无需额外组件
 - **滚动锁定** — 内置 wheelLock 机制，防止滚动链式传播
-- **空状态支持** — 内置空数据展示，可通过插槽自定义
+- **空状态自动判断** — 根据数据自动判断空状态，配合 loadMore 首次加载确定是否真实为空
 - **页面级滚动** — 支持 `pageMode` 使用页面作为滚动容器
 - **手动控制** — 提供 `finish()` 和 `reset()` 方法控制加载状态
 
@@ -79,7 +79,6 @@ Vue.use(VirtualList)
     :item-size="50"
     height="400px"
     :load-more="loadMore"
-    :is-empty="!list.length"
   >
     <template #default="{ item }">
       <div>{{ item.name }}</div>
@@ -90,7 +89,7 @@ Vue.use(VirtualList)
 <script>
 export default {
   data() {
-    return { list: [], page: 1 }
+    return { list: [] }
   },
   methods: {
     async loadMore() {
@@ -213,7 +212,7 @@ import { VirtualList, RecycleScroller, DynamicScroller } from '@zhenzichao/vue2-
 
 ### 场景 4：无限加载 + 虚拟滚动
 
-适用于分页加载海量数据的场景，兼具虚拟滚动性能和无限加载体验：
+适用于分页加载海量数据的场景，兼具虚拟滚动性能和无限加载体验，初始数据为空时会自动触发首次加载判断是否真实为空：
 
 ```vue
 <template>
@@ -222,7 +221,6 @@ import { VirtualList, RecycleScroller, DynamicScroller } from '@zhenzichao/vue2-
     :item-size="50"
     height="100vh"
     :load-more="loadMore"
-    :is-empty="!list.length"
   >
     <template #default="{ item }">
       <div>{{ item.name }}</div>
