@@ -18,7 +18,6 @@
           </thead>
           <tbody>
             <tr><td>load-more</td><td>加载回调函数，返回 Promise，resolve(true) 表示加载完毕</td><td>Function</td><td>—</td></tr>
-            <tr><td>is-empty</td><td>是否为空数据状态，为 true 时显示 empty 插槽</td><td>Boolean</td><td>false</td></tr>
             <tr><td>throttle</td><td>节流间隔（ms），防止频繁触发</td><td>Number</td><td>300</td></tr>
             <tr><td>loading-text</td><td>加载中文案（未使用 #loading 插槽时生效）</td><td>String</td><td>'加载中...'</td></tr>
             <tr><td>finished-text</td><td>加载完毕文案（未使用 #finished 插槽时生效）</td><td>String</td><td>'--到底了--'</td></tr>
@@ -44,8 +43,8 @@
             <tr><th>名称</th><th>说明</th></tr>
           </thead>
           <tbody>
-            <tr><td>default</td><td>列表内容，is-empty 为 false 时显示</td></tr>
-            <tr><td>empty</td><td>空数据状态内容，is-empty 为 true 且非 loading 时显示</td></tr>
+            <tr><td>default</td><td>列表内容，有数据时显示</td></tr>
+            <tr><td>empty</td><td>空数据状态内容，加载完毕后数据仍为空时显示</td></tr>
             <tr><td>loading</td><td>加载中内容，默认显示 loading-text</td></tr>
             <tr><td>finished</td><td>加载完毕内容，默认显示 finished-text</td></tr>
           </tbody>
@@ -56,7 +55,6 @@
         <pre v-pre><code>&lt;ZcInfiniteScroll
   ref="scroll"
   :load-more="loadMore"
-  :is-empty="list.length === 0"
   :throttle="800"&gt;
   &lt;div v-for="item in list" :key="item.id"&gt;
     {{ item.name }}
@@ -110,7 +108,6 @@ resetList() {
       <ZcInfiniteScroll
         ref="scroll"
         :load-more="loadMoreFn"
-        :is-empty="list.length === 0"
         :throttle="800"
       >
         <div v-for="(item, index) in list" :key="index" class="list-item">

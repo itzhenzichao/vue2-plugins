@@ -1,6 +1,6 @@
 {
   "name": "@zhenzichao/vue2-virtual-list",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "A virtual scroll list plugin for Vue 2 - wraps vue-virtual-scroller with simplified API for large data rendering",
   "main": "dist/virtual-list.js",
   "module": "dist/virtual-list.mjs",

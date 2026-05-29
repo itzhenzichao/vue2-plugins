@@ -1,13 +1,13 @@
 <template>
   <div class="zc-infinite-scroll">
-    <slot v-if="!isEmpty" />
-    <div>
-      <slot name="empty" v-if="isEmpty && !loading" />
+    <slot v-if="!isInnerEmpty" />
+    <div v-if="isInnerEmpty && finished" class="zc-infinite-scroll-empty">
+      <slot name="empty" />
     </div>
     <div v-if="loading" class="zc-infinite-scroll-loading">
       <slot name="loading">{{ loadingText }}</slot>
     </div>
-    <div v-if="finished && !isEmpty" class="zc-infinite-scroll-finished">
+    <div v-if="finished && !isInnerEmpty" class="zc-infinite-scroll-finished">
       <slot name="finished">{{ finishedText }}</slot>
     </div>
     <div ref="sentinel" class="zc-infinite-scroll-sentinel" />
@@ -27,10 +27,6 @@ export default {
       type: Number,
       default: 300
     },
-    isEmpty: {
-      type: Boolean,
-      default: false
-    },
     loadingText: {
       type: String,
       default: '加载中...'
@@ -46,7 +42,14 @@ export default {
       loading: false,
       finished: false,
       lastLoadEndTime: 0,
+      hasContent: false
     };
+  },
+
+  computed: {
+    isInnerEmpty() {
+      return !this.hasContent;
+    }
   },
 
   mounted() {
@@ -112,6 +115,7 @@ export default {
           this.loading = false;
           this.lastLoadEndTime = Date.now();
           if (isFinished) this.finished = true;
+          this.hasContent = true;
           this.checkAndLoad();
         }).catch(() => {
           this.loading = false;
@@ -131,6 +135,7 @@ export default {
       this.finished = false;
       this.loading = false;
       this.lastLoadEndTime = 0;
+      this.hasContent = false;
       this.destroyObserver();
       this.$nextTick(() => {
         this.initObserver();
@@ -157,6 +162,7 @@ export default {
   width: 100%;
 }
 
+.zc-infinite-scroll-empty,
 .zc-infinite-scroll-loading,
 .zc-infinite-scroll-finished {
   text-align: center;

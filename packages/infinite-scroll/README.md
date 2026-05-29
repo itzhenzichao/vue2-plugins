@@ -20,7 +20,7 @@
 - **IntersectionObserver 驱动** — 使用现代浏览器 API 检测滚动触底，无需手动计算滚动位置
 - **节流控制** — 内置加载节流机制，防止短时间内重复触发请求
 - **自动填充检测** — 一页数据不足以填满视口时，自动触发下一次加载
-- **空状态支持** — 内置空数据展示，可通过插槽自定义空状态内容
+- **空状态自动判断** — 根据数据自动判断空状态，配合 loadMore 首次加载确定是否真实为空
 - **加载完成提示** — 数据全部加载完毕后显示提示文字，支持自定义
 - **手动控制** — 提供 `finish()` 和 `reset()` 方法，可手动控制加载状态
 - **零依赖** — 不依赖任何第三方库，轻量高效
@@ -50,7 +50,7 @@ Vue.use(InfiniteScroll)
 
 ```vue
 <template>
-  <ZcInfiniteScroll :load-more="loadMore" :is-empty="list.length === 0">
+  <ZcInfiniteScroll :load-more="loadMore">
     <div v-for="item in list" :key="item.id">{{ item.name }}</div>
   </ZcInfiniteScroll>
 </template>
@@ -82,7 +82,6 @@ export default {
 |------|------|--------|------|
 | `loadMore` | `Function` | — | **必填**，触底时调用的加载函数，应返回 Promise，resolve 为 `true` 表示加载完毕 |
 | `throttle` | `Number` | `300` | 两次加载之间的最小间隔时间（ms） |
-| `isEmpty` | `Boolean` | `false` | 当前数据是否为空 |
 | `loadingText` | `String` | `'加载中...'` | 加载状态提示文字 |
 | `finishedText` | `String` | `'--到底了--'` | 加载完毕提示文字 |
 
@@ -90,8 +89,8 @@ export default {
 
 | 插槽名 | 说明 |
 |--------|------|
-| `default` | 列表内容区域，`isEmpty` 为 `false` 时渲染 |
-| `empty` | 空状态内容，`isEmpty` 为 `true` 且非加载中时渲染 |
+| `default` | 列表内容区域，有数据时渲染 |
+| `empty` | 空状态内容，加载完毕后数据仍为空时渲染 |
 | `loading` | 自定义加载提示，默认显示 `loadingText` |
 | `finished` | 自定义加载完毕提示，默认显示 `finishedText` |
 
@@ -133,7 +132,7 @@ this.$refs.scroll.reset()
 
 ```vue
 <template>
-  <ZcInfiniteScroll :load-more="loadMore" :is-empty="!list.length && !loading">
+  <ZcInfiniteScroll :load-more="loadMore">
     <div v-for="item in list" :key="item.id">{{ item.name }}</div>
   </ZcInfiniteScroll>
 </template>
@@ -160,7 +159,7 @@ export default {
 
 ```vue
 <template>
-  <ZcInfiniteScroll :load-more="loadMore" :is-empty="!list.length">
+  <ZcInfiniteScroll :load-more="loadMore">
     <div v-for="item in list" :key="item.id">{{ item.name }}</div>
     <template #empty>
       <div class="empty-state">暂无数据</div>

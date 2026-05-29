@@ -81,8 +81,10 @@ export default {
     }
   },
   watch: {
-    activeKey(key) {
-      window.location.hash = key;
+    activeKey(val) {
+      window.location.hash = val;
+      const content = document.querySelector('.content');
+      if (content) content.scrollTop = 0;
     }
   }
 };

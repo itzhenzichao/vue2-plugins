@@ -1,6 +1,6 @@
 {
   "name": "@zhenzichao/vue2-infinite-scroll",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "A lightweight infinite scroll component plugin for Vue 2 - page scroll load more data with IntersectionObserver",
   "main": "dist/infinite-scroll.js",
   "module": "dist/infinite-scroll.mjs",
