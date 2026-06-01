@@ -84,7 +84,7 @@
           <pre><code>npm install vite-plugin-svg-icons -D</code></pre>
         </div>
         <div v-else class="config-section" style="margin-top: 15px;">
-          <p>安装 Webpack 专用 Loader 及清理工具：</p>
+          <p>安装 Webpack 专用 Loader 及清理工具： svgo-loader版本使用^3.0.0  svg-sprite-loader版本^6.0.11</p>
           <pre><code>npm install svg-sprite-loader svgo-loader -D</code></pre>
         </div>
       </div>
