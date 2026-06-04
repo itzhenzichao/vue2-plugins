@@ -12,7 +12,7 @@
     "build:infinite-scroll": "pnpm --filter @zhenzichao/vue2-infinite-scroll run build",
     "build:virtual-list": "pnpm --filter @zhenzichao/vue2-virtual-list run build",
     "build:toast": "pnpm --filter @zhenzichao/vue2-toast run build",
-    "build:demo": "pnpm --filter @zhenzichao/vue2-demo run build",
+    "build:demo": "PROD_MICRO=1 pnpm --filter @zhenzichao/vue2-demo run build",
     "publish:svg-icon": "pnpm --filter @zhenzichao/vue2-svg-icon publish --access public",
     "publish:watermark": "pnpm --filter @zhenzichao/vue2-watermark-plugin publish --access public",
     "publish:infinite-scroll": "pnpm --filter @zhenzichao/vue2-infinite-scroll publish --access public",
