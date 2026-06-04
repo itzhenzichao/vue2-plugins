@@ -9,7 +9,7 @@
 
 <div align="center">
   <br />
-  <a href="https://itzhenzichao.github.io/vue2-plugins/">
+  <a href="https://itzhenzichao.github.io/vue2-plugins/#/watermark">
     <img src="https://img.shields.io/badge/查看在线文档与演示-1677ff?style=for-the-badge&logo=googledocs&logoColor=white" alt="Online Documentation" />
   </a>
   <br />

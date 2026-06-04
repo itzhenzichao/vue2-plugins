@@ -30,7 +30,7 @@ registerMicroApps([
 
 start({
   sandbox: { experimentalStyleIsolation: true },
-  prefetch: false,
+  prefetch: true,
 });
 
 new Vue({

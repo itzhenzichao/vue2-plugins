@@ -11,7 +11,12 @@
 - `pnpm workspace` 多包管理
 - 插件包独立构建（ESM + CJS）
 - `demo` 项目本地实时调试 + 热更新
+- qiankun 微前端支持，可嵌入独立仓库的子应用预览页面
 - npm scope 统一为 `@zhenzichao`
+
+## 微前端
+
+通过 qiankun 将独立仓库 [vue-textellipsis-zzc](https://github.com/itzhenzichao/vue-textellipsis-zzc) 的预览页面嵌入 demo，详细方案见 [QIANKUN.md](./QIANKUN.md)。
 
 ## 目录结构
 
@@ -20,13 +25,14 @@ vue2-plugins/
 ├── package.json
 ├── pnpm-workspace.yaml
 ├── README.md
+├── QIANKUN.md            → qiankun 微前端集成方案文档
 └── packages/
     ├── svg-icon/          → @zhenzichao/vue2-svg-icon
     ├── watermark/         → @zhenzichao/vue2-watermark-plugin
     ├── infinite-scroll/   → @zhenzichao/vue2-infinite-scroll
     ├── virtual-list/      → @zhenzichao/vue2-virtual-list
     ├── toast/             → @zhenzichao/vue2-toast
-    └── demo/              → @zhenzichao/vue2-demo (私有，开发预览)
+    └── demo/              → @zhenzichao/vue2-demo (私有，开发预览 + qiankun 主应用)
 ```
 
 ## 快速开始
@@ -41,10 +47,11 @@ pnpm build
 
 | 命令 | 说明 |
 |------|------|
-| `pnpm dev` | 启动 demo 开发服务器 |
+| `pnpm dev` | 启动 demo 开发服务器（本地联调，需同时运行子应用 dev server） |
+| `pnpm dev:prod` | 用构建产物 + 线上子应用启动 demo 开发服务器（无需运行子应用） |
 | `pnpm build` | 构建所有插件（不含 demo） |
 | `pnpm build:<插件名>` | 构建单个插件，如 `pnpm build:infinite-scroll` |
-| `pnpm build:demo` | 构建 demo 用于部署 |
+| `pnpm build:demo` | 构建 demo 用于部署（PROD_MICRO=1，qiankun 指向线上子应用） |
 | `pnpm publish:<插件名>` | 发布单个插件，如 `pnpm publish:svg-icon` |
 | `pnpm publish:all` | 发布所有插件到 npm |
 

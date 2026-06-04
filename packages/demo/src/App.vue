@@ -22,7 +22,12 @@
     </aside>
 
     <main class="content">
-      <div v-show="isMicroApp" id="subapp-viewport"></div>
+      <div v-show="isMicroApp" id="subapp-viewport">
+        <div class="micro-loading">
+          <div class="micro-loading-spinner"></div>
+          <p>正在加载子应用...</p>
+        </div>
+      </div>
       <router-view v-show="!isMicroApp" />
     </main>
   </div>
@@ -161,5 +166,26 @@ export default {
   padding: 24px;
   max-width: 1000px;
   margin: 0 auto;
+}
+
+.micro-loading {
+  text-align: center;
+  padding: 40px 0;
+  color: #4e5969;
+  font-size: 14px;
+}
+
+.micro-loading-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #e5e6eb;
+  border-top-color: #1677ff;
+  border-radius: 50%;
+  animation: micro-spin 0.8s linear infinite;
+  margin: 0 auto 12px;
+}
+
+@keyframes micro-spin {
+  to { transform: rotate(360deg); }
 }
 </style>
