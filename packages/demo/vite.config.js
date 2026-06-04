@@ -12,7 +12,10 @@ const srcAlias = {
 };
 
 export default defineConfig({
-  base: '/vue2-plugins/',
+  base: "/vue2-plugins/",
+  define: {
+    "process.env.PROD_MICRO": JSON.stringify(process.env.PROD_MICRO || ""),
+  },
   plugins: [
     createVuePlugin(),
     createSvgIconsPlugin({
@@ -37,6 +40,6 @@ export default defineConfig({
     }
   },
   server: {
-    port: 5173
+    port: 5173,
   }
 });

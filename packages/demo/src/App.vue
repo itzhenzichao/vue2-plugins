@@ -7,82 +7,75 @@
       </div>
 
       <nav class="menu" aria-label="插件菜单">
-        <button
+        <router-link
           v-for="item in menu"
           :key="item.key"
+          :to="item.path"
           class="menu-item"
-          :class="{ active: item.key === activeKey }"
-          type="button"
-          @click="activeKey = item.key"
+          :class="{ active: $route.path === item.path }"
+          tag="button"
         >
           <div class="menu-item-title">{{ item.title }}</div>
           <div class="menu-item-sub">{{ item.sub }}</div>
-        </button>
+        </router-link>
       </nav>
     </aside>
 
     <main class="content">
-      <component :is="activePage" />
+      <div v-show="isMicroApp" id="subapp-viewport"></div>
+      <router-view v-show="!isMicroApp" />
     </main>
   </div>
 </template>
 
 <script>
-import SvgIconPage from "./pages/SvgIconPage.vue";
-import WatermarkPage from "./pages/WatermarkPage.vue";
-import InfiniteScrollPage from "./pages/InfiniteScrollPage.vue";
-import VirtualListPage from "./pages/VirtualListPage.vue";
+const MICRO_APP_HASHES = ["/vue-textellipsis-zzc"];
 
 export default {
   name: "DemoApp",
-  components: {
-    SvgIconPage,
-    WatermarkPage,
-    InfiniteScrollPage,
-    VirtualListPage
-  },
   data() {
-    const menu = [
-      {
-        key: "svg-icon",
-        title: "SvgIcon 图标",
-        sub: "@zhenzichao/vue2-svg-icon"
-      },
-      {
-        key: "watermark",
-        title: "Watermark 水印",
-        sub: "@zhenzichao/vue2-watermark-plugin"
-      },
-      {
-        key: "infinite-scroll",
-        title: "InfiniteScroll 无限滚动",
-        sub: "@zhenzichao/vue2-infinite-scroll"
-      },
-      {
-        key: "virtual-list",
-        title: "VirtualList 虚拟列表",
-        sub: "@zhenzichao/vue2-virtual-list"
-      }
-    ];
-    const hashKey = window.location.hash.slice(1);
-    const validKey = menu.find(m => m.key === hashKey);
     return {
-      menu,
-      activeKey: validKey ? hashKey : "svg-icon",
+      menu: [
+        {
+          key: "svg-icon",
+          path: "/svg-icon",
+          title: "SvgIcon 图标",
+          sub: "@zhenzichao/vue2-svg-icon"
+        },
+        {
+          key: "watermark",
+          path: "/watermark",
+          title: "Watermark 水印",
+          sub: "@zhenzichao/vue2-watermark-plugin"
+        },
+        {
+          key: "infinite-scroll",
+          path: "/infinite-scroll",
+          title: "InfiniteScroll 无限滚动",
+          sub: "@zhenzichao/vue2-infinite-scroll"
+        },
+        {
+          key: "virtual-list",
+          path: "/virtual-list",
+          title: "VirtualList 虚拟列表",
+          sub: "@zhenzichao/vue2-virtual-list"
+        },
+        {
+          key: "vue-textellipsis-zzc",
+          path: "/vue-textellipsis-zzc",
+          title: "TextEllipsis 文本省略",
+          sub: "vue-textellipsis-zzc (微前端)"
+        }
+      ],
     };
   },
   computed: {
-    activePage() {
-      if (this.activeKey === "watermark") return WatermarkPage;
-      if (this.activeKey === "svg-icon") return SvgIconPage;
-      if (this.activeKey === "infinite-scroll") return InfiniteScrollPage;
-      if (this.activeKey === "virtual-list") return VirtualListPage;
-      return null;
+    isMicroApp() {
+      return MICRO_APP_HASHES.includes(this.$route.path);
     }
   },
   watch: {
-    activeKey(val) {
-      window.location.hash = val;
+    $route() {
       const content = document.querySelector('.content');
       if (content) content.scrollTop = 0;
     }
@@ -139,6 +132,7 @@ export default {
   border-radius: 12px;
   padding: 12px 12px;
   cursor: pointer;
+  color: #1f2329;
 }
 
 .menu-item.active {
@@ -161,5 +155,11 @@ export default {
   flex: 1;
   overflow: auto;
   background: #f7f8fa;
+}
+
+#subapp-viewport {
+  padding: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 </style>

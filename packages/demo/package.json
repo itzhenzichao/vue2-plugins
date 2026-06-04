@@ -8,12 +8,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@zhenzichao/vue2-svg-icon": "workspace:*",
-    "@zhenzichao/vue2-watermark-plugin": "workspace:*",
     "@zhenzichao/vue2-infinite-scroll": "workspace:*",
-    "@zhenzichao/vue2-virtual-list": "workspace:*",
+    "@zhenzichao/vue2-svg-icon": "workspace:*",
     "@zhenzichao/vue2-toast": "workspace:*",
-    "vue": "2.7.14"
+    "@zhenzichao/vue2-virtual-list": "workspace:*",
+    "@zhenzichao/vue2-watermark-plugin": "workspace:*",
+    "qiankun": "^2.10.16",
+    "vue": "2.7.14",
+    "vue-router": "3"
   },
   "devDependencies": {
     "vite-plugin-svg-icons": "^2.0.1"
